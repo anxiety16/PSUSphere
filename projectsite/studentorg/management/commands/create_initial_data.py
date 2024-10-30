@@ -3,7 +3,7 @@ from faker import Faker
 from studentorg.models import College, Program, Organization, Student, OrgMember
 
 class Command(BaseCommand):
-    help = "Create initial data for the application"
+    help = "Create initial data for the appxAlication"
 
     def handle(self, *args, **kwargs):
         self.create_organization(10)
