@@ -18,7 +18,6 @@ class OrgMemberAdmin(admin.ModelAdmin):
     list_display = ("student", "get_member_program", "organization", "date_joined")
     search_fields = ("student__lastname", "student__firstname","")
 
-
     # Custom method to display the program of a student in OrgMember
     def get_member_program(self, obj):
         try:
