@@ -12,7 +12,7 @@
           <br />
           <div class="col-md-12 row">
             <div class="col-md-6">
-              <form class="navbar-left navbar-form nav-search mr-md-3" action="{% url 'program-list' %}">
+              <form class="navbar-left navbar-form nav-search mr-md-3" action="{% url 'student-list' %}">
                 <div class="input-group">
                   <input type="text" placeholder="Search ..." class="form-control" name="q" value="{{ request.GET.q }}"/>
                   <div class="input-group-append">
@@ -35,7 +35,7 @@
               <thead>
                 <tr>
                   <th scope="col">Student ID</th>
-                  <th scope="col">Full Name</th>
+                  <th scope="col">Student Name</th>
                   <th scope="col">Program Name</th>
                   <th scope="col">College</th>
                   <th scope="col">Action</th>

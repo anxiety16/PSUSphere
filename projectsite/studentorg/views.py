@@ -27,7 +27,11 @@ class OrganizationList(ListView):
         qs = super(OrganizationList, self).get_queryset(*args, **kwargs)
         if self.request.GET.get("q") is not None:
             query = self.request.GET.get('q')
-            qs = qs.filter(Q(name__icontains=query) | Q(description__icontains=query))
+            qs = qs.filter(
+                Q(name__icontains=query) | 
+                Q(description__icontains=query)|
+                Q(college__college_name__icontains=query)
+                )
         return qs
 
 class OrganizationCreateView(CreateView):
@@ -58,14 +62,18 @@ class OrgMemberList(ListView):
         qs = super(OrgMemberList, self).get_queryset(*args, **kwargs)
         if self.request.GET.get("q") is not None:
             query = self.request.GET.get('q')
-            qs = qs.filter(Q(name__icontains=query) | Q(description__icontains=query))
+            qs = qs.filter(Q(student__lastname__icontains=query)|
+                           Q(student__firstname__icontains=query)|
+                           Q(organization__name__icontains=query)|
+                           Q(organization__college__college_name__icontains=query)|
+                           Q(date_joined__icontains=query))
         return qs
 
 class OrgMemberCreateView(CreateView):
     model = OrgMember
     form_class = OrgMemberForm 
     template_name = 'orgmember/orgmember_add.html'
-    success_url = reverse_lazy('orgmember-list')
+    success_url = reverse_lazy('orgmember-list')    
 
 class OrgMemberUpdateView(UpdateView):
     model = OrgMember
@@ -91,6 +99,8 @@ class CollegeList(ListView):
             query = self.request.GET.get('q')
             qs = qs.filter(Q(college_name__icontains=query))
         return qs   
+    
+
 
 class CollegeCreateView(CreateView):
     model = College
@@ -120,7 +130,8 @@ class ProgramList(ListView):
         qs = super(ProgramList, self).get_queryset(*args, **kwargs)
         if self.request.GET.get("q") is not None:
             query = self.request.GET.get('q')
-            qs = qs.filter(Q(prog_name__icontains=query))
+            qs = qs.filter(Q(prog_name__icontains=query)|
+                           Q(college__college_name__icontains=query))
         return qs
     
 class ProgramCreateView(CreateView):
@@ -154,7 +165,9 @@ class StudentList(ListView):
             qs = qs.filter(
             Q(lastname__icontains=query) |
             Q(firstname__icontains=query) |
-            Q(student_id__icontains=query)
+            Q(student_id__icontains=query) |
+            Q(college__college_name__icontains=query)|
+            Q(program__prog_name__icontains=query)  
         )
         return qs
 

@@ -15,6 +15,9 @@ class OrgMemberForm(forms.ModelForm):
     class Meta:
         model = OrgMember
         fields = ['student', 'organization', 'date_joined']
+        widgets = {
+            'date_joined': forms.DateInput(attrs={'type': 'date'})
+        }
 
 class CollegeForm(forms.ModelForm):
     class Meta:
