@@ -188,6 +188,8 @@ class StudentDeleteView(DeleteView):
     template_name = 'student/student_del.html'
     success_url = reverse_lazy('student-list')
 
+    
+
 
 
 
