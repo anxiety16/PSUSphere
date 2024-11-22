@@ -19,7 +19,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, re_path
 
-from studentorg.views import (HomePageView, ChartView,
+from studentorg.views import (HomePageView, ChartView, PieCountbySeverity,
                               OrganizationList, OrganizationCreateView, OrganizationUpdateView, OrganizationDeleteView, 
                               OrgMemberList, OrgMemberCreateView, OrgMemberUpdateView, OrgMemberDeleteView, 
                               CollegeList, CollegeCreateView, CollegeUpdateView, CollegeDeleteView, 
@@ -33,7 +33,8 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path('', views.HomePageView.as_view(), name='home'),
     path('dashboard_chart', ChartView.as_view(), name='dasboard-chart'),
-
+    path('chart/', PieCountbySeverity, name='chart'),
+    
     #Organization views
     path('organization_list', OrganizationList.as_view(), name='organization-list'),
     path('organization_list/add', OrganizationCreateView.as_view(), name='organization-add'),
