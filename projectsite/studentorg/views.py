@@ -375,7 +375,7 @@ class StudentCreateView(CreateView):
     success_url = reverse_lazy('student-list')  
 
     def form_valid(self, form):
-        form
+        messages.success(self.request, 'Student has been successfully added.')
         return super().form_valid(form)
 
 class StudentUpdateView(UpdateView):
@@ -385,7 +385,7 @@ class StudentUpdateView(UpdateView):
     success_url = reverse_lazy('student-list')
 
     def form_valid(self, form):
-        form
+        messages.success(self.request, 'Student has been successfully updated.')
         return super().form_valid(form)
 
 class StudentDeleteView(DeleteView):
